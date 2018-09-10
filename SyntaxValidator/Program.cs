@@ -5,7 +5,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace RoktTest1
+namespace ValidateSyntax
 {
     class Program
     {
