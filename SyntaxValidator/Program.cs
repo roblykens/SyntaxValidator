@@ -5,13 +5,13 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace ValidateSyntax
+namespace ValidateBrackets
 {
     class Program
     {
         static void Main(string[] args)
         {
-            //test data for checking syntax
+            //test data for checking Brackets
             var testList = new List<string>();
             testList.Add("[]{}()"); //YES
             testList.Add("[{]}"); //NO
@@ -30,17 +30,17 @@ namespace ValidateSyntax
 
             do
             {
-                var sytaxValidationResults = ValidateSyntaxRules(testList);
-                foreach (var syntaxResult in sytaxValidationResults)
+                var sytaxValidationResults = ValidateBracketsRules(testList);
+                foreach (var BracketsResult in sytaxValidationResults)
                 {
-                    Console.ForegroundColor = syntaxResult == "YES" ? ConsoleColor.Green : ConsoleColor.Red;
-                    Console.WriteLine(syntaxResult);
+                    Console.ForegroundColor = BracketsResult == "YES" ? ConsoleColor.Green : ConsoleColor.Red;
+                    Console.WriteLine(BracketsResult);
                 }
             } while (Console.ReadLine() != null);
         }
 
 
-        static List<string> ValidateSyntaxRules(List<string> sytaxLines)
+        static List<string> ValidateBracketsRules(List<string> sytaxLines)
         {
             var results = new List<string>();
 
@@ -58,21 +58,21 @@ namespace ValidateSyntax
             if (string.IsNullOrEmpty(sytaxLine))
                 return false;
 
-            const string openSyntax = "{[(";
-            const string closeSyntax = "}])";
+            const string openBrackets = "{[(";
+            const string closeBrackets = "}])";
 
-            var syntaxSet = new Stack<int>();
+            var BracketsSet = new Stack<int>();
 
-            foreach (char syntax in sytaxLine)
+            foreach (char Brackets in sytaxLine)
             {
-                if (openSyntax.Contains(syntax))
+                if (openBrackets.Contains(Brackets))
                 {
-                    var syntaxFound = openSyntax.IndexOf(syntax);
-                    syntaxSet.Push(syntaxFound);
+                    var BracketsFound = openBrackets.IndexOf(Brackets);
+                    BracketsSet.Push(BracketsFound);
                 }
-                else if (closeSyntax.Contains(syntax) && syntaxSet.Count > 0)
+                else if (closeBrackets.Contains(Brackets) && BracketsSet.Count > 0)
                 {
-                    if (!syntaxSet.Pop().Equals(closeSyntax.IndexOf(syntax)))
+                    if (!BracketsSet.Pop().Equals(closeBrackets.IndexOf(Brackets)))
                     {
                         return false;
                     }
