@@ -11,7 +11,7 @@ namespace ValidateSyntax
     {
         static void Main(string[] args)
         {
-            //test data
+            //test data for checking syntax
             var testList = new List<string>();
             testList.Add("[]{}()"); //YES
             testList.Add("[{]}"); //NO
