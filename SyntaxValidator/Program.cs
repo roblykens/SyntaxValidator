@@ -11,6 +11,7 @@ namespace RoktTest1
     {
         static void Main(string[] args)
         {
+            //test data
             var testList = new List<string>();
             testList.Add("[]{}()"); //YES
             testList.Add("[{]}"); //NO
