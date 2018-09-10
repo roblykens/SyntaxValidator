@@ -30,49 +30,49 @@ namespace ValidateBrackets
 
             do
             {
-                var sytaxValidationResults = ValidateBracketsRules(testList);
-                foreach (var BracketsResult in sytaxValidationResults)
+                var bracketsValidationResults = ValidateBracketsRules(testList);
+                foreach (var bracketsResult in bracketsValidationResults)
                 {
-                    Console.ForegroundColor = BracketsResult == "YES" ? ConsoleColor.Green : ConsoleColor.Red;
-                    Console.WriteLine(BracketsResult);
+                    Console.ForegroundColor = bracketsResult == "YES" ? ConsoleColor.Green : ConsoleColor.Red;
+                    Console.WriteLine(bracketsResult);
                 }
             } while (Console.ReadLine() != null);
         }
 
 
-        static List<string> ValidateBracketsRules(List<string> sytaxLines)
+        static List<string> ValidateBracketsRules(List<string> bracketsLines)
         {
             var results = new List<string>();
 
-            foreach (var line in sytaxLines)
+            foreach (var line in bracketsLines)
             {
-                results.Add(ValidateSytaxLine(line) ? "YES" : "NO");
+                results.Add(ValidateBracketsLine(line) ? "YES" : "NO");
             }
 
             return results;
         }
 
 
-        static bool ValidateSytaxLine(string sytaxLine)
+        static bool ValidateBracketsLine(string bracketsLine)
         {
-            if (string.IsNullOrEmpty(sytaxLine))
+            if (string.IsNullOrEmpty(bracketsLine))
                 return false;
 
             const string openBrackets = "{[(";
             const string closeBrackets = "}])";
 
-            var BracketsSet = new Stack<int>();
+            var bracketsSet = new Stack<int>();
 
-            foreach (char Brackets in sytaxLine)
+            foreach (char brackets in bracketsLine)
             {
-                if (openBrackets.Contains(Brackets))
+                if (openBrackets.Contains(brackets))
                 {
-                    var BracketsFound = openBrackets.IndexOf(Brackets);
-                    BracketsSet.Push(BracketsFound);
+                    var BracketsFound = openBrackets.IndexOf(brackets);
+                    bracketsSet.Push(BracketsFound);
                 }
-                else if (closeBrackets.Contains(Brackets) && BracketsSet.Count > 0)
+                else if (closeBrackets.Contains(brackets) && bracketsSet.Count > 0)
                 {
-                    if (!BracketsSet.Pop().Equals(closeBrackets.IndexOf(Brackets)))
+                    if (!bracketsSet.Pop().Equals(closeBrackets.IndexOf(brackets)))
                     {
                         return false;
                     }
